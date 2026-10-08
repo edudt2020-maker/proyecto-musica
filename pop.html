@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUSICLove</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+<style>
+/* ====================== */
+/* ARTISTAS DEL POP */
+/* ====================== */
+
+         .artistas-pop {
+            background: #0d0d0d;
+         }
+
+         .artista-card {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 18px;
+            background: #111;
+         }
+
+         .artista-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+/* Degradado en la parte inferior */
+         .artista-card::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 35%;
+            background: linear-gradient(
+            transparent,
+            rgba(0, 0, 0, 0.9)
+            );
+         }
+
+/* Nombre del artista */
+         .nombre-artista {
+            position: absolute;
+            bottom: 25px;
+            left: 30px;
+            z-index: 2;
+
+            color: white;
+            font-size: 25px;
+            font-weight: bold;
+         }
+
+/* Flechas */
+         .carousel-control-prev,
+         .carousel-control-next {
+            width: 55px;
+            height: 55px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 50%;
+            opacity: 1;
+         }   
+
+         .carousel-control-prev {
+            left: 15px;
+         }
+
+         .carousel-control-next {
+            right: 15px;
+         }
+
+         .carousel-control-prev:hover,
+         .carousel-control-next:hover {
+            background: #ffc107;
+         }
+/* ====================== */
+/* TARJETAS DE CANCIONES */
+/* ====================== */
+
+         .lista-artistas {
+            background: #0d0d0d;
+            padding: 20px 0 70px;
+         }
+
+         .titulo-lista {
+            color: white;
+            font-weight: bold;
+            margin-bottom: 25px;
+         }
+
+/* Tarjeta */
+
+         .tarjeta-artista {
+            background: #151515;
+            border-radius: 16px;
+            overflow: hidden;
+            height: 100%;
+            transition: 0.3s;
+            border: 1px solid #242424;
+             }
+
+.tarjeta-artista:hover {
+    transform: translateY(-5px);
+    background: #1c1c1c;
+}
+
+/* Imagen */
+
+.tarjeta-artista img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Información */
+
+.info-artista {
+    padding: 18px;
+}
+
+.info-artista h4 {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Canciones */
+
+.cancion-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid #292929;
+}
+
+.cancion-item:last-child {
+    border-bottom: none;
+}
+
+.cancion-nombre {
+    color: #ddd;
+    font-size: 14px;
+}
+
+/* Botón reproducir */
+
+.btn-reproducir {
+    width: 34px;
+    height: 34px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #ffc107;
+    color: #111;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.btn-reproducir:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+/* Reproductor */
+
+.reproductor-musica {
+    margin-top: 35px;
+    padding: 18px 22px;
+
+    background: #151515;
+    border-radius: 15px;
+
+    color: white;
+}
+
+.reproductor-musica h5 {
+    margin-bottom: 12px;
+    color: #ffc107;
+}
+
+.reproductor-musica audio {
+    width: 100%;
+        }
+</style>
+
+
+<!-- ====================== -->
+<!-- ====================== -->
+<!-- 1. BARRA DE NAVEGACION -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-warning sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-uppercase" href="#" style="color:black">
+                <i class="bi bi-emoji-heart-eyes"></i> MUSICLove
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="Pagina web.html" style="color:black">VOLVER</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#generos" style="color:black">GÉNEROS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#cantantes" style="color:black">CANTANTES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#foro" style="color:black">FORO</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="btn btn-dark btn-sm rounded-pill px-3 fw-semibold" href="#foro">REGISTRATE</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<!-- ======================= -->
+<!-- ======================= -->
+<!-- 2. INTERFAZ DE IMAGENES -->
+
+<section id="cantantes" class="artistas-pop py-5">
+    <div class="container">
+
+        <h2 class="text-white fw-bold mb-4">♫ Artistas Pop ♫</h2>
+
+        <div id="popCarousel" class="carousel slide" data-bs-ride="carousel">
+
+            <div class="carousel-inner">
+
+                <!-- ARTISTA 1 -->
+                <div class="carousel-item active">
+                    <div class="artista-card">
+                        <img src="https://blog.ticketmaster.es/wp-content/uploads/2024/08/curiosidades-de-Sabrina-Carpenter-1.webp"
+                             alt="Sabrina Carpenter">
+
+                        <div class="nombre-artista">
+                            Sabrina Carpenter
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ARTISTA 2 -->
+                <div class="carousel-item">
+                    <div class="artista-card">
+                        <img src="https://one-world.global/wp-content/uploads/2024/04/Billie-Eilish-2024_front.jpg" 
+                             class="d-block w-100" 
+                             alt="Billie Eilish">
+
+                        <div class="nombre-artista">
+                            Billie Eilish
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ARTISTA 3 -->
+                <div class="carousel-item">
+                    <div class="artista-card">
+                        <img src="https://m.media-amazon.com/images/S/pv-target-images/156b9508a79287d1443e4e22e22d76d498fe44c688973193bc406cea46cb0b77._SX1080_FMjpg_.jpg" 
+                             class="d-block w-100" 
+                             alt="Bruno Mars">
+
+                        <div class="nombre-artista">
+                            Bruno Mars
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ARTISTA 4 -->
+                <div class="carousel-item">
+                    <div class="artista-card">
+                        <img src="https://blog.richersounds.com/wp-content/uploads/2020/03/the-weeknd.jpg" 
+                             class="d-block w-100" 
+                             alt="The Weeknd">
+
+                        <div class="nombre-artista">
+                            The Weeknd
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ARTISTA 5 -->
+                <div class="carousel-item">
+                    <div class="artista-card">
+                        <img src="https://alba-gt-chapintv.cdn.mediatiquepress.com/wp-content/uploads/2025/03/fotos-para-notas2-3.jpg" 
+                             class="d-block w-100" 
+                             alt="JENNIE">
+
+                        <div class="nombre-artista">
+                            JENNIE
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- FLECHA IZQUIERDA -->
+            <button class="carousel-control-prev" type="button" 
+                    data-bs-target="#popCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+
+            <!-- FLECHA DERECHA -->
+            <button class="carousel-control-next" type="button" 
+                    data-bs-target="#popCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+
+        </div>
+    </div>
+</section>
+
+<!-- ======================= -->
+<!-- 3. LISTA DE ARTISTAS -->
+<!-- ======================= -->
+
+<section class="lista-artistas">
+
+    <div class="container">
+
+        <h2 class="titulo-lista">
+            ♫ Artistas y sus canciones ♫
+        </h2>
+
+
+        <div class="row g-4">
+
+
+            <!-- ====================== -->
+            <!-- ARTISTA 1 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Lady Gaga">
+
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE16ucycJEEycqZqo3RjJR1BdIf-DUZduPQ2gu81MRLG1S0Xz7XVdbdiRO&s=10"
+                         alt="Lady Gaga">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            Lady Gaga
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. Poker Face
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. Bad romance
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. Just dance
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- ARTISTA 2 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Billie Eilish">
+
+                    <img src="https://okdiario.com/img/2021/06/22/billie-eilish.jpg"
+                         alt="Billie Eilish">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            Billie Eilish
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. BIRDS OF A FEATHER
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. bad guy
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. ocean eyes
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- ARTISTA 3 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Bruno Mars">
+
+                    <img src="https://indietheka.com/wp-content/uploads/2026/06/indietheka-olivia-rodrigo-you-seem-pretty-sad-for-a-girl-so-in-love-cover-1024x576.jpg"
+                         alt="Olivia Rodrigo">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            Olivia Rodrigo
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. Good 4 u
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. Deja vu
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. Vampire
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- ARTISTA 4 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="The Weeknd">
+
+                    <img src="https://images4.alphacoders.com/820/820484.jpg"
+                         alt="The Weeknd">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            The Weeknd
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. Blinding Lights
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. Starboy
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. Save Your Tears
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- ARTISTA 5 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="jennie">
+                    <img src="https://w0.peakpx.com/wallpaper/650/579/HD-wallpaper-jennie-kim-blackpink.jpg"
+                         alt="JENNIE">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            JENNIE
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. Fallen angel
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. Mantra
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. Love Hangover
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- ARTISTA 6 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Justin Bieber">
+
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvHhUkDGPZV1yCXTczYmoiaZ4Q0SyMvYACNIfWE8RdXvviv_VxTZkks4o8&s=10"
+                         alt="Justin Bieber">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            Justin Bieber
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. Yummy
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. Sorry
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. Baby
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- ARTISTA 7 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Bruno Mars">
+
+                    <img src="https://wallpaperaccess.com/full/54143.jpg"
+                         alt="Bruno Mars">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            Bruno Mars
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. Die with a smile
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. Apt
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. Treasure
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- ARTISTA 8 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Sabrina Carpenter">
+
+                    <img src="https://www.gamereactor.es/media/49/sabrinacarpentergood_4334933_1600x900.jpg"
+                         alt="Sabrina Carpenter">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            Sabrina Carpenter
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. Espresso
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. Bad time
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. Feather
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- ARTISTA 9 -->
+            <!-- ====================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="tarjeta-artista" id="Taylor Swift">
+
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzpra3iQjrX6WLAl0SQVM8uUm6QLh8_BLHlhY8GU5vXbqTj3_RFjE_a3I5&s=10"
+                         alt="Taylor Swift">
+
+                    <div class="info-artista">
+
+                        <h4>
+                            Taylor Swift
+                        </h4>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                1. Blank Space
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                2. Cruel Summer
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="cancion-item">
+
+                            <span class="cancion-nombre">
+                                3. Anti-Hero
+                            </span>
+
+                            <button class="btn-reproducir">
+                                <i class="bi bi-play-fill"></i>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====================== --><!-- REPRODUCTOR -->
+<!-- ====================== -->
+
+        <div class="reproductor-musica">
+
+            <h5>
+                ♫ Reproduciendo
+            </h5>
+
+            <audio controls>
+                <source src="" type="audio/mpeg">
+                Tu navegador no soporta el reproductor de audio.
+            </audio>
+
+        </div>
+
+
+    </div>
+
+</section>
+  
+<!-- ================ -->
+<!-- ================ -->
+<!-- 6. PIE DE PAGINA -->
+    
+    <footer class="bg-warning text-white py-1">
+        <div class="container text-center">
+            <p class="mb-1">&copy; MUSICLove 2026. Todos los derechos reservados.</p>
+            <div class="fs-5">
+                <a href="https://www.instagram.com/?hl=es" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                <a href="https://www.facebook.com/?locale=es_LA" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.whatsapp.com/?lang=es" class="text-white"><i class="bi bi-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
